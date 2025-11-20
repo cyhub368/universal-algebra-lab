@@ -20,7 +20,7 @@ def get_visualization_code(user_query):
     """
     Asks the AI to write Python code to visualize the student's math question.
     """
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.5-flash')
     
     prompt = f"""
     You are a Visual Math Tutor for High School Algebra.
@@ -53,7 +53,7 @@ def get_explanation(user_query):
     """
     Asks the AI for a simple text explanation (Gate 1/2/3 Style).
     """
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.5-flash')
     prompt = f"Explain this algebra concept to a high schooler simply (3 sentences max): {user_query}"
     return model.generate_content(prompt).text
 
