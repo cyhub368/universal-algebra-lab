@@ -51,11 +51,21 @@ def get_visualization_code(user_query):
 
 def get_explanation(user_query):
     """
-    Asks the AI for a simple text explanation (Gate 1/2/3 Style).
+    Asks the AI for a simple, step-by-step explanation.
     """
     model = genai.GenerativeModel('gemini-2.5-flash')
-    prompt = f"Explain this algebra concept to a high schooler simply (3 sentences max): {user_query}"
-    return model.generate_content(prompt).text
+    
+    # --- THIS IS THE UPDATED PROMPT ---
+    prompt = f"""
+    Explain this algebra concept to a high schooler using a clear, numbered, step-by-step format. 
+    Focus on the process, key definitions, or steps to solve the problem. 
+    Do not exceed 4 simple, short steps. Do not include unnecessary headings or filler text.
+    User query: {user_query}
+    """
+    # ----------------------------------
+
+    response = model.generate_content(prompt)
+    return response.text
 
 # --- THE UI ---
 st.title("🧪 The Universal Algebra Lab")
